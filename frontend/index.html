@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Task Analyzer</h1>
+            <p>Intelligently score and prioritize your tasks based on multiple factors</p>
+        </header>
+
+        <!-- Input Section -->
+        <section class="input-section">
+            <h2>Add Tasks</h2>
+            
+            <!-- Single Task Form -->
+            <form id="taskForm" class="task-form">
+                <div class="form-group">
+                    <input type="text" id="title" placeholder="Task title" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dueDate">Due Date:</label>
+                        <input type="date" id="dueDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="estimatedHours">Estimated Hours:</label>
+                        <input type="number" id="estimatedHours" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="importance">Importance (1-10):</label>
+                        <input type="number" id="importance" min="1" max="10" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dependencies">Dependencies (comma-separated task IDs):</label>
+                    <input type="text" id="dependencies" placeholder="e.g., 1,2,3">
+                </div>
+                <button type="submit">Add Task</button>
+            </form>
+
+            <!-- Bulk Input -->
+            <div class="bulk-input">
+                <h3>Bulk Input (JSON)</h3>
+                <textarea id="bulkInput" placeholder='Paste JSON array of tasks. Example: 
+[
+  {
+    "title": "Fix login bug",
+    "due_date": "2024-01-15",
+    "estimated_hours": 3,
+    "importance": 8,
+    "dependencies": []
+  }
+]'></textarea>
+                <button type="button" onclick="loadBulkTasks()">Load Bulk Tasks</button>
+            </div>
+
+            <!-- Current Tasks -->
+            <div class="current-tasks">
+                <h3>Current Tasks (${tasks.length})</h3>
+                <div id="currentTasksList" class="current-tasks-list"></div>
+            </div>
+
+            <!-- Strategy Selector -->
+            <div class="strategy-selector">
+                <label for="strategy">Sorting Strategy:</label>
+                <select id="strategy">
+                    <option value="smart">Smart Balance</option>
+                    <option value="fastest">Fastest Wins</option>
+                    <option value="impact">High Impact</option>
+                    <option value="deadline">Deadline Driven</option>
+                </select>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions">
+                <button onclick="analyzeTasks()" class="analyze-btn">Analyze & Prioritize Tasks</button>
+                <button onclick="getSuggestions()" class="suggest-btn">Get Today's Suggestions</button>
+                <button onclick="clearTasks()" class="clear-btn">Clear All Tasks</button>
+            </div>
+        </section>
+
+        <!-- Output Section -->
+        <section class="output-section">
+            <h2>Prioritized Tasks</h2>
+            <div id="loading" class="loading hidden">Analyzing tasks...</div>
+            <div id="error" class="error hidden"></div>
+            
+            <!-- Suggestions -->
+            <div id="suggestions" class="suggestions hidden">
+                
+            </div>
+
+            <!-- Task List -->
+            <div id="taskList" class="task-list">
+                <p class="no-tasks">No tasks analyzed yet. Add tasks and click "Analyze & Prioritize Tasks".</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
