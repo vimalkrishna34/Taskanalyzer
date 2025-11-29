@@ -321,7 +321,7 @@ function getSuggestions() {
 function displaySuggestions(suggestions) {
     const suggestionsDiv = document.getElementById('suggestions');
     
-    suggestionsList.innerHTML = '';
+    suggestionsList.innerHTML = '';    
     
     if (suggestions && suggestions.length > 0) {
         suggestions.forEach((suggestion, index) => {
