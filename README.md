@@ -236,13 +236,3 @@ If you'd like to contribute or review the code:
 2. Create a feature branch: `git checkout -b feature/your-change`
 3. Commit clearly and push: `git push origin feature/your-change`
 4. Open a PR describing your changes
-
----
-
-## License
-
-MIT License — see `LICENSE` file.
-
----
-
-If anything in this README should be adjusted for your repository structure or you want the content formatted differently (shorter Algorithm section, more examples, or additional API docs), tell me and I'll update it.
